@@ -30,9 +30,8 @@ public class ManageUserRestController {
             monitoringService.registerSuccessLog(String.valueOf(input.getId()),"/update "+input.toString()+" "+message);
             return ResponseEntity.ok(message);
         } catch (UserNotFoundException e) {
-            message="Usuario no encontrado";
-            monitoringService.registerControlledExceptionLog("","/update "+input.toString()+" "+message);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+            monitoringService.registerControlledExceptionLog("","/update "+input.toString()+" "+e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch (Exception e) {
             message = "Error al actualizar el usuario";
             monitoringService.registerControlledExceptionLog("","/update "+input.toString()+" "+message);
@@ -49,9 +48,8 @@ public class ManageUserRestController {
             monitoringService.registerSuccessLog(String.valueOf(id),"/confirm-email/{id} "+id+" "+message);
             return ResponseEntity.ok(message);
         } catch (UserNotFoundException e) {
-            message="Usuario no encontrado";
-            monitoringService.registerControlledExceptionLog("","/confirm-email/{id} "+id+" "+message);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+            monitoringService.registerControlledExceptionLog("","/confirm-email/{id} "+id+" "+e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch (Exception e) {
             message = "Error al confirmar el Email";
             monitoringService.registerControlledExceptionLog("","/confirm-email/{id} "+id+" "+message);
