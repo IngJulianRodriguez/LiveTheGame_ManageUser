@@ -34,7 +34,7 @@ public class ManageUserRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch (Exception e) {
             message = "Error al actualizar el usuario";
-            monitoringService.registerControlledExceptionLog("","/update "+input.toString()+" "+message);
+            monitoringService.registerNotControlledExceptionLog("","/update "+input.toString()+" "+message);
             return ResponseEntity.status(500).body(message);
         }
 
@@ -52,7 +52,7 @@ public class ManageUserRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch (Exception e) {
             message = "Error al confirmar el Email";
-            monitoringService.registerControlledExceptionLog("","/confirm-email/{id} "+id+" "+message);
+            monitoringService.registerNotControlledExceptionLog("","/confirm-email/{id} "+id+" "+message);
             return ResponseEntity.status(500).body(message);
         }
     }
